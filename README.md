@@ -1,4 +1,4 @@
 UuidBehavior
 ============
 
-Helps you add UUID for propel ActiveRecoerd
+Helps you add UUID for propel ActiveRecord

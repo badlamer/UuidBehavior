@@ -1,0 +1,23 @@
+{
+    "name": "badlamer/propel-uuid-behavior",
+    "description": "Propel behavior that helps you to set fixed UUID",
+    "keywords": [ "propel", "behavior", "uuid" ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yuri Druzhkov",
+            "email": "bad1lamer@gmail.com"
+        }
+    ],
+    "require": {
+        "propel/propel1": "~1.6",
+        "rhumsaa/uuid": "~2.5"
+
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~3.7"
+    },
+    "autoload": {
+        "classmap": ["src/"]
+    }
+}
