@@ -11,7 +11,7 @@ class UuidBehavior extends \Behavior
 		'version' => 4,
 		'permanent' => 'true',
 		'required' => 'true',
-		'uniqie' => 'true'
+		'unique' => 'true'
 	);
 
 	public function objectMethods($builder) {
@@ -79,7 +79,7 @@ class UuidBehavior extends \Behavior
 
 		$column = $this->getTable()->getColumn($this->getParameter('name'));
 
-		if($this->booleanValue($this->getParameter('required')) && $this->booleanValue($this->getParameter('unique')) && !$columnName->isUnique()) {
+		if($this->booleanValue($this->getParameter('required')) && $this->booleanValue($this->getParameter('unique')) && !$column->isUnique()) {
 			// add a unique to column
 			$unique = new Unique($column);
 			$unique->setName($this->getTable()->getCommonName() . '_uuid');

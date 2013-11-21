@@ -43,7 +43,10 @@ XML;
 		$book->save();
 	}
 
-	public function testUniqueUud() {
+	/**
+	* @expectedException PropelException
+	*/
+	public function testUniqueUuid() {
 		$book = new Book;
 		$book->save();
 		$book2 = new Book;
