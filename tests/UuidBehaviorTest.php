@@ -42,4 +42,12 @@ XML;
 		$book->setUuidColumn('ffff');
 		$book->save();
 	}
+
+	public function testUniqueUud() {
+		$book = new Book;
+		$book->save();
+		$book2 = new Book;
+		$book2->setUuidColumn($book->getUuidColumn());
+		$book2->save();
+	}
 }
