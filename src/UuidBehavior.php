@@ -9,20 +9,22 @@ class UuidBehavior extends \Behavior
 	protected $parameters = array(
 		'name' => 'uuid',
 		'version' => 4,
-		'permanent' => true,
-		'required' => true
+		'permanent' => "true",
+		'required' => "true",
+		'uniqie' => "true"
 	);
 
 	public function objectMethods($builder) {
 
 		$script = '';
-		if($this->getParameter('required')) {
+		if($this->booleanValue($this->getParameter('required'))) {
 			$script .= $this->addPreInsertUuidCreateAndSaveHook();
 		}
 
-		if($this->getParameter('permanent')) {
+		if($this->booleanValue($this->getParameter('permanent'))) {
 			$script .= $this->addPermanentUuidUpdateHook();
 		}
+
 		return $script;
 	}
 
@@ -65,15 +67,15 @@ class UuidBehavior extends \Behavior
 				'type'    => 'CHAR',
 				'size'	  => 36,
 				'required' => $this->getParameter('required'),
-				'unique' => true
 			));
-		}
-		else {
+		} else {
 			$column = $this->getTable()->getColumn($this->getParameter('name'));
-			$column->setType('CHAR');
+			$column->setNotNull(
+				$this->booleanValue($this->getParameter('required'))
+			);
 			$column->setSize(36);
-			$column->setNotNull($this->getParameter('required'));
-			$column->setUnique(true);
+			$column->setType('CHAR');
+			$column->setUnique($this->booleanValue($this->getParameter('unique')));
 		}
 	}
 }
