@@ -75,7 +75,16 @@ class UuidBehavior extends \Behavior
 			);
 			$column->setSize(36);
 			$column->setType('CHAR');
-			$column->setUnique($this->booleanValue($this->getParameter('unique')));
+		}
+
+		$column = $this->getTable()->getColumn($this->getParameter('name'));
+
+		if($this->booleanValue($this->getParameter('unique')) && !$columnName->isUnique()) {
+			// add a unique to column
+			$unique = new Unique($column);
+			$unique->setName($this->getTable()->getCommonName() . '_slug');
+			$unique->addColumn($column);
+			$this->getTable()->addUnique($unique);
 		}
 	}
 }
