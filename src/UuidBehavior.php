@@ -68,23 +68,15 @@ class UuidBehavior extends \Behavior
 				'size'	  => 36,
 				'required' => $this->getParameter('required'),
 			));
-		} else {
-			$column = $this->getTable()->getColumn($this->getParameter('name'));
-			$column->setNotNull(
-				$this->booleanValue($this->getParameter('required'))
-			);
-			$column->setSize(36);
-			$column->setType('CHAR');
-		}
 
-		$column = $this->getTable()->getColumn($this->getParameter('name'));
-
-		if($this->booleanValue($this->getParameter('required')) && $this->booleanValue($this->getParameter('unique')) && !$column->isUnique()) {
-			// add a unique to column
-			$unique = new Unique($column);
-			$unique->setName($this->getTable()->getCommonName() . '_uuid');
-			$unique->addColumn($column);
-			$this->getTable()->addUnique($unique);
+			if($this->booleanValue($this->getParameter('required')) && $this->booleanValue($this->getParameter('unique'))) {
+				// add a unique to column
+				$column = $this->getTable()->getColumn($this->getParameter('name'));
+				$unique = new Unique();
+				$unique->setName($columnName . '_uuid');
+				$unique->addColumn($column);
+				$this->getTable()->addUnique($unique);
+			}
 		}
 	}
 }
