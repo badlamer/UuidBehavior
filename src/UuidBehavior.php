@@ -21,9 +21,7 @@ class UuidBehavior extends \Behavior
 			$script .= $this->addPreInsertUuidCreateAndSaveHook();
 		}
 
-		if($this->booleanValue($this->getParameter('permanent'))) {
-			$script .= $this->addPermanentUuidUpdateHook();
-		}
+		$script .= $this->addPermanentUuidUpdateHook();
 
 		return $script;
 	}
@@ -33,14 +31,16 @@ class UuidBehavior extends \Behavior
 		return $this->renderTemplate('addUuidPreInsertHook', array(
 			'uuidColumn' => $columnPhpName,
 			'version' => $this->getParameter('version')
-		)) . "\n";
+		));
 	}
 
 	public function addPermanentUuidUpdateHook() {
-		$columnName = $this->getTable()->getColumn($this->getParameter('name'))->getFullyQualifiedName();
+		$column = $this->getTable()->getColumn($this->getParameter('name'));
 		return $this->renderTemplate('addPermanentUuidUpdateHook', array(
-			'uuidColumn' => $columnName
-		)) . "\n";
+			'permanent' => $this->booleanValue($this->getParameter('permanent')),
+			'uuidPhpColumn' => $column->getPhpName(),
+			'uuidColumn' => $column->getFullyQualifiedName()
+		));
 	}
 
 	public function modifyTable() {

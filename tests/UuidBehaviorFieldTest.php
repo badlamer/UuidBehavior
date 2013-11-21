@@ -39,7 +39,7 @@ XML;
 	public function testUuidChange() {
 		$book = new BookWithField;
 		$book->save();
-		$book->setUuid('ffff');
+		$book->setUuid(\Rhumsaa\Uuid\Uuid::uuid4()->__toString());
 		$book->save();
 	}
 }

@@ -1,16 +1,15 @@
 <?php
 
-class UuidBehaviorNotRequiredTest extends \PHPUnit_Framework_TestCase {
+class UuidBehaviorNotPermanentTest extends \PHPUnit_Framework_TestCase {
 
 	public function setUp() {
-		if(!class_exists('BookNotRequiredUuid')) {
+		if(!class_exists('BookNotPermanent')) {
 			$schema = <<<XML
 <database name="uuid_behavior">
-<table name="Book_not_required_uuid">
+<table name="book_not_permanent">
 <column name="id" required="true" primaryKey="true" autoIncrement="true" type="INTEGER" />
 <behavior name="uuid">
 	<parameter name="version" value="1" />
-	<parameter name="required" value="false" />
 	<parameter name="permanent" value="false" />
 </behavior>
 </table>
@@ -25,19 +24,16 @@ XML;
 		}
 	}
 
-	public function testUuidCreateNotRequired() {
-		$book = new BookNotRequiredUuid;
-		$this->assertTrue(method_exists($book, 'getUuid'));
-		$this->assertNull($book->getUuid());
-		$book->save();
-		$this->assertNull($book->getUuid());
-	}
 
-	public function testUuidChange() {
-		$book = new BookNotRequiredUuid;
+	/**
+	* @expectedException InvalidArgumentException
+	* @expectedExceptionMessage UUID: fff in not valid
+	*/
+	public function testParmanentUuid() {
+		$book = new BookNotPermanent;
 		$book->save();
-		$book->setUuid(\Rhumsaa\Uuid\Uuid::uuid4()->__toString());
-		$this->assertEquals(1, $book->save());
+		$this->assertNotNull($book->getUuid());
+		$book->setUuid('fff');
+		$book->save();
 	}
-
 }

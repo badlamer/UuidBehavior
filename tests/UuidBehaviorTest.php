@@ -34,12 +34,22 @@ XML;
 
 	/**
 	* @expectedException InvalidArgumentException
+	*/
+	public function testUuidCreateNotValid() {
+		$book = new Book;
+		$book->setUuidColumn('ffff');
+		$book->save();
+	}
+
+
+	/**
+	* @expectedException InvalidArgumentException
 	* @expectedExceptionMessage You can not change the permanent UUID
 	*/
 	public function testUuidChange() {
 		$book = new Book;
 		$book->save();
-		$book->setUuidColumn('ffff');
+		$book->setUuidColumn(\Rhumsaa\Uuid\Uuid::uuid4()->__toString());
 		$book->save();
 	}
 
