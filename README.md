@@ -36,13 +36,8 @@ Then declare the behavior in your `schema.xml`:
 
 ```xml
 <table name="person">
-  <column name="name" type="VARCHAR" required="true" />
-</table>
-
-<table name="friend">
   <behavior name="uuid">
     <parameter name="name" value="uuid_column" />
   </behavior>
-  <!-- you do not need to specify any colums for the "friend" table, the behavior will add them automatically -->
 </table>
 ```
