@@ -47,7 +47,7 @@ class UuidBehavior extends \Behavior
 		$table = $this->getTable();
 		if (!$columnName = $this->getParameter('name')) {
 			throw new InvalidArgumentException(sprintf(
-				'You must define a \'name\' parameter for the \'aggregate_column\' behavior in the \'%s\' table',
+				'You must define a \'name\' parameter for the \'uuid\' behavior in the \'%s\' table',
 				$table->getName()
 			));
 		}
@@ -55,7 +55,7 @@ class UuidBehavior extends \Behavior
 		$version = $this->getParameter('version');
 		if(!in_array($version, static::$availUuidVersions)) {
 			throw new InvalidArgumentException(sprintf(
-				'Verions mst be in enum' . implode(', ', static::$availUuidVersions),
+				'Version must be in enum' . implode(', ', static::$availUuidVersions),
 				$table->getName()
 			));
 		}
@@ -73,7 +73,7 @@ class UuidBehavior extends \Behavior
 				// add a unique to column
 				$column = $this->getTable()->getColumn($this->getParameter('name'));
 				$unique = new Unique();
-				$unique->setName($columnName . '_uuid');
+				$unique->setName($columnName . '_uuid_unique');
 				$unique->addColumn($column);
 				$this->getTable()->addUnique($unique);
 			}
