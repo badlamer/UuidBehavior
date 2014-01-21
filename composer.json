@@ -10,8 +10,9 @@
         }
     ],
     "require": {
-        "propel/propel1": "~1.6",
-        "rhumsaa/uuid": "~2.5"
+        "php": ">=5.3.3",
+        "propel/propel1": ">=1.6",
+        "rhumsaa/uuid": ">=2.5"
 
     },
     "require-dev": {
@@ -19,5 +20,10 @@
     },
     "autoload": {
         "classmap": ["src/"]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.0.2-dev"
+        }
     }
 }
