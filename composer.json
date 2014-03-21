@@ -11,8 +11,8 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "propel/propel1": ">=1.6",
-        "rhumsaa/uuid": ">=2.5"
+        "propel/propel1": "~1.6",
+        "rhumsaa/uuid": "~2.5"
 
     },
     "require-dev": {
