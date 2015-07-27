@@ -1,29 +1,34 @@
 {
-    "name": "badlamer/propel-uuid-behavior",
-    "description": "Propel behavior that helps you to set fixed UUID",
-    "keywords": [ "propel", "behavior", "uuid" ],
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Yuri Druzhkov",
-            "email": "bad1lamer@gmail.com"
-        }
-    ],
-    "require": {
-        "php": ">=5.3.3",
-        "propel/propel1": "~1.6",
-        "rhumsaa/uuid": "~2.5"
-
-    },
-    "require-dev": {
-        "phpunit/phpunit": "~3.7"
-    },
-    "autoload": {
-        "classmap": ["src/"]
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "0.0.2-dev"
-        }
+  "name": "badlamer/propel-uuid-behavior",
+  "description": "Propel behavior that helps you to set fixed UUID",
+  "keywords": [
+    "propel",
+    "behavior",
+    "uuid"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Yuri Druzhkov",
+      "email": "bad1lamer@gmail.com"
     }
+  ],
+  "require": {
+    "php": ">=5.3.3",
+    "propel/propel1": "~1.6",
+    "ramsey/uuid": "~2.8"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.7"
+  },
+  "autoload": {
+    "classmap": [
+      "src/"
+    ]
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.1.0-dev"
+    }
+  }
 }
