@@ -16,10 +16,10 @@
   "require": {
     "php": ">=5.3.3",
     "propel/propel1": "~1.6",
-    "ramsey/uuid": "~2.8"
+    "ramsey/uuid": "~3.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "~4.7"
+    "phpunit/phpunit": "> 4.7, < 6"
   },
   "autoload": {
     "classmap": [
@@ -28,7 +28,7 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "0.1.0-dev"
+      "dev-master": "0.2.0-dev"
     }
   }
 }

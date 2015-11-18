@@ -1,10 +1,11 @@
 <?php
 
-class UuidBehaviorNotRequiredTest extends \PHPUnit_Framework_TestCase {
-
-	public function setUp() {
-		if(!class_exists('BookNotRequiredUuid')) {
-			$schema = <<<XML
+class UuidBehaviorNotRequiredTest extends \PHPUnit_Framework_TestCase
+{
+    public function setUp()
+    {
+        if (!class_exists('BookNotRequiredUuid')) {
+            $schema = <<<XML
 <database name="uuid_behavior">
 <table name="Book_not_required_uuid">
 <column name="id" required="true" primaryKey="true" autoIncrement="true" type="INTEGER" />
@@ -16,28 +17,29 @@ class UuidBehaviorNotRequiredTest extends \PHPUnit_Framework_TestCase {
 </table>
 </database>
 XML;
-			$builder = new PropelQuickBuilder();
-			$config  = $builder->getConfig();
-			$config->setBuildProperty('behavior.uuid.class', __DIR__ . '/../src/UuidBehavior');
-			$builder->setConfig($config);
-			$builder->setSchema($schema);
-			$con = $builder->build();
-		}
-	}
+            $builder = new PropelQuickBuilder();
+            $config = $builder->getConfig();
+            $config->setBuildProperty('behavior.uuid.class', __DIR__.'/../src/UuidBehavior');
+            $builder->setConfig($config);
+            $builder->setSchema($schema);
+            $con = $builder->build();
+        }
+    }
 
-	public function testUuidCreateNotRequired() {
-		$book = new BookNotRequiredUuid;
-		$this->assertTrue(method_exists($book, 'getUuid'));
-		$this->assertNull($book->getUuid());
-		$book->save();
-		$this->assertNull($book->getUuid());
-	}
+    public function testUuidCreateNotRequired()
+    {
+        $book = new BookNotRequiredUuid();
+        $this->assertTrue(method_exists($book, 'getUuid'));
+        $this->assertNull($book->getUuid());
+        $book->save();
+        $this->assertNull($book->getUuid());
+    }
 
-	public function testUuidChange() {
-		$book = new BookNotRequiredUuid;
-		$book->save();
-		$book->setUuid(\Rhumsaa\Uuid\Uuid::uuid4()->__toString());
-		$this->assertEquals(1, $book->save());
-	}
-
+    public function testUuidChange()
+    {
+        $book = new BookNotRequiredUuid();
+        $book->save();
+        $book->setUuid(\Ramsey\Uuid\Uuid::uuid4()->__toString());
+        $this->assertEquals(1, $book->save());
+    }
 }
