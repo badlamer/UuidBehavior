@@ -8,7 +8,7 @@ Helps you add UUID for propel ActiveRecord
 
 ### Requirements
 
-This behavior requires Propel >= 1.6.0 and Ramsey\Uuid for PHP >= 3
+This behavior requires Propel >= 1.6.0 and Ramsey\Uuid for PHP >= 5.4
 
 ### Installation
 
