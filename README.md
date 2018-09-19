@@ -36,8 +36,19 @@ Then declare the behavior in your `schema.xml`:
 
 ```xml
 <table name="person">
+  <!--
+    Explict define a column, else the beavior would create a colum called "uuid".
+    We need to have at least one column with primaryKey="true" to avoid the error:
+      >>Fatal error: Uncaught Error: Call to a member function getPhpName() on null in [...] vendor/propel/propel1/generator/lib/builder/om/QueryBuilder.php:478<<
+  -->
+  <column name="id" type="CHAR" size="36" required="true" primaryKey="true" />
+ 
+  <!--
+    We are linking the column with the name >>id<< to the behavior.
+    Now the uuid generation is used for each new created entity.
+  -->
   <behavior name="uuid">
-    <parameter name="name" value="uuid_column" />
+    <parameter name="name" value="id" />
   </behavior>
 </table>
 ```
